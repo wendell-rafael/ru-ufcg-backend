@@ -1,13 +1,7 @@
 from fastapi import FastAPI
+from app.routers.menu import router as menu_router
 
 app = FastAPI()
 
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+# Registrar as rotas de menu
+app.include_router(menu_router, prefix="/menu", tags=["Menu"])
